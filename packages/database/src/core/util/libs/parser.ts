@@ -71,21 +71,13 @@ export const parseRepoInfo = function(
   const parsedUrl = parseURL(dataURL),
     namespace = parsedUrl.subdomain;
 
-  if (parsedUrl.domain === 'firebase') {
-    fatal(
-      parsedUrl.host +
-        ' is no longer supported. ' +
-        'Please use <YOUR FIREBASE>.firebaseio.com instead'
-    );
-  }
-
   // Catch common error of uninitialized namespace value.
   if (
     (!namespace || namespace == 'undefined') &&
-    parsedUrl.domain !== 'localhost'
+    (!parsedUrl.domain || parsedUrl.domain == 'undefined')
   ) {
     fatal(
-      'Cannot parse Firebase url. Please use https://<YOUR FIREBASE>.firebaseio.com'
+      'Cannot parse Firebase url. Please check your Firebase url again'
     );
   }
 
@@ -176,8 +168,8 @@ export const parseURL = function(
       subdomain = parts[0].toLowerCase();
     } else if (parts.length === 2) {
       domain = parts[0];
-    } else if (parts[0].slice(0, colonInd).toLowerCase() === 'localhost') {
-      domain = 'localhost';
+    } else if (parts.length === 1) {
+      domain = parts[0].slice(0, colonInd).toLowerCase();
     }
     // Support `ns` query param if subdomain not already set
     if (subdomain === '' && 'ns' in queryParams) {
