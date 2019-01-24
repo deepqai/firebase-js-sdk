@@ -76,9 +76,7 @@ export const parseRepoInfo = function(
     (!namespace || namespace == 'undefined') &&
     (!parsedUrl.domain || parsedUrl.domain == 'undefined')
   ) {
-    fatal(
-      'Cannot parse Firebase url. Please check your Firebase url again'
-    );
+    fatal('Cannot parse Firebase url. Please check your Firebase url again');
   }
 
   if (!parsedUrl.secure) {
