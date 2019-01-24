@@ -1,5 +1,5 @@
 {
-  "name": "@firebase/database",
+  "name": "@deepqai/firebase-fork-database",
   "version": "0.3.10",
   "description": "",
   "author": "Firebase <firebase-support@google.com> (https://firebase.google.com/)",
@@ -58,7 +58,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/firebase/firebase-js-sdk/tree/master/packages/database"
+    "url": "https://github.com/deepqai/firebase-js-sdk/tree/master/packages/database"
   },
   "bugs": {
     "url": "https://github.com/firebase/firebase-js-sdk/issues"

@@ -1,5 +1,5 @@
 {
-  "name": "firebase",
+  "name": "@deepqai/firebase-fork",
   "version": "5.8.0",
   "description": "Firebase JavaScript library for web and Node.js",
   "author": "Firebase <firebase-support@google.com> (https://firebase.google.com/)",
@@ -23,7 +23,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/firebase/firebase-js-sdk.git"
+    "url": "https://github.com/deepqai/firebase-js-sdk.git"
   },
   "scripts": {
     "build": "rollup -c",
@@ -37,7 +37,7 @@
   "dependencies": {
     "@firebase/app": "0.3.7",
     "@firebase/auth": "0.9.1",
-    "@firebase/database": "0.3.10",
+    "@deepqai/firebase-fork-database": "0.3.10",
     "@firebase/firestore": "1.0.0",
     "@firebase/functions": "0.3.5",
     "@firebase/messaging": "0.3.9",
