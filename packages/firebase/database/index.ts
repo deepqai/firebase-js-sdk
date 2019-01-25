@@ -14,4 +14,4 @@
  * limitations under the License.
  */
 
-import '@deepqai/firebase-fork-database';
+import '@deepqai/firebase-database';
