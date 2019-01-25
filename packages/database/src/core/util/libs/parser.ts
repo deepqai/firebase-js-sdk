@@ -74,7 +74,8 @@ export const parseRepoInfo = function(
   // Catch common error of uninitialized namespace value.
   if (
     (!namespace || namespace == 'undefined') &&
-    (!parsedUrl.domain || parsedUrl.domain == 'undefined')
+    (!parsedUrl.domain || parsedUrl.domain == 'undefined') &&
+    (!parsedUrl.host || parsedUrl.host == 'undefined')
   ) {
     fatal('Cannot parse Firebase url. Please check your Firebase url again');
   }
