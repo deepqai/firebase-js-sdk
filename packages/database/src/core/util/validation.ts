@@ -418,8 +418,6 @@ export const validateUrl = function(
   if (
     !(typeof parsedUrl.repoInfo.host === 'string') ||
     parsedUrl.repoInfo.host.length === 0 ||
-    (!isValidKey(parsedUrl.repoInfo.namespace) &&
-      parsedUrl.repoInfo.host.split(':')[0] !== 'localhost') ||
     (pathString.length !== 0 && !isValidRootPathString(pathString))
   ) {
     throw new Error(

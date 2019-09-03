@@ -1,5 +1,5 @@
 {
-  "name": "firebase",
+  "name": "@deepqai/firebase",
   "version": "6.5.0",
   "description": "Firebase JavaScript library for web and Node.js",
   "author": "Firebase <firebase-support@google.com> (https://firebase.google.com/)",
@@ -25,7 +25,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/firebase/firebase-js-sdk.git"
+    "url": "https://github.com/deepqai/firebase-js-sdk.git"
   },
   "scripts": {
     "build": "rollup -c",
@@ -40,7 +40,7 @@
     "@firebase/app": "0.4.15",
     "@firebase/app-types": "0.4.3",
     "@firebase/auth": "0.11.8",
-    "@firebase/database": "0.5.1",
+    "@deepqai/database": "0.5.1",
     "@firebase/firestore": "1.5.0",
     "@firebase/functions": "0.4.16",
     "@firebase/installations": "0.2.5",
