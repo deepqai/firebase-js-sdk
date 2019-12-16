@@ -19,7 +19,7 @@
 // can replace this file reference with a reference to the minified sources
 // instead.
 
-import firebase from '@firebase/app';
+import firebase from '@deepqai/firebase-app';
 
 // tslint:disable-next-line:no-default-export
 export default firebase;

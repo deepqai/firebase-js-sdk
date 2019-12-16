@@ -18,7 +18,7 @@ import * as sinon from 'sinon';
 import { FirebaseApp } from '@firebase/app-types';
 import { _FirebaseApp } from '@firebase/app-types/private';
 import { HttpsError, FunctionsErrorCode } from '@firebase/functions-types';
-import firebase from '@firebase/app';
+import firebase from '@deepqai/firebase-app';
 import '@firebase/messaging';
 import { Service } from '../../src/api/service';
 import { isSupported } from '@firebase/messaging';

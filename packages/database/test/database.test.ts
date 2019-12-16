@@ -15,7 +15,7 @@
  */
 
 import { expect } from 'chai';
-import firebase from '@firebase/app';
+import firebase from '@deepqai/firebase-app';
 import { DATABASE_ADDRESS, createTestApp } from './helpers/util';
 import '../index';
 

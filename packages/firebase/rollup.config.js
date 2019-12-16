@@ -115,7 +115,7 @@ const componentBuilds = components
           extend: true,
           name: GLOBAL_NAME,
           globals: {
-            '@firebase/app': GLOBAL_NAME
+            '@deepqai/firebase-app': GLOBAL_NAME
           },
 
           /**
@@ -139,7 +139,7 @@ const componentBuilds = components
             }`
         },
         plugins: [...plugins, uglify()],
-        external: ['@firebase/app']
+        external: ['@deepqai/firebase-app']
       }
     ];
   })

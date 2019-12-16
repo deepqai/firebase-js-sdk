@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import firebase from '@firebase/app';
+import firebase from '@deepqai/firebase-app';
 import * as app_types from '@firebase/app-types';
 import { FirebaseServiceFactory } from '@firebase/app-types/private';
 import * as types from '@firebase/functions-types';

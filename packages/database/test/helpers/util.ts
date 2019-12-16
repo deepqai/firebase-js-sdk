@@ -16,7 +16,7 @@
 
 declare var MozWebSocket: WebSocket;
 
-import firebase from '@firebase/app';
+import firebase from '@deepqai/firebase-app';
 import '../../index';
 import { Reference } from '../../src/api/Reference';
 import { Query } from '../../src/api/Query';

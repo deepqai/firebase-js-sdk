@@ -15,7 +15,7 @@
  */
 import { assert } from 'chai';
 import * as sinon from 'sinon';
-import firebase from '@firebase/app';
+import firebase from '@deepqai/firebase-app';
 import { FirebaseNamespace } from '@firebase/app-types';
 import { makeRequest } from '../src/implementation/request';
 import { RequestInfo } from '../src/implementation/requestinfo';

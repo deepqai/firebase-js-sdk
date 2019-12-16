@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import firebase from '@firebase/app';
+import firebase from '@deepqai/firebase-app';
 import { FirebaseApp } from '@firebase/app-types';
 import { FirebaseServiceFactory } from '@firebase/app-types/private';
 import { StringFormat } from './src/implementation/string';

@@ -15,5 +15,5 @@
  */
 
 import '@firebase/polyfill';
-import firebase from '@firebase/app';
+import firebase from '@deepqai/firebase-app';
 export default firebase;

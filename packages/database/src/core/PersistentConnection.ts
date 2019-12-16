@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import firebase from '@firebase/app';
+import firebase from '@deepqai/firebase-app';
 import { forEach, contains, isEmpty, getCount, safeGet } from '@firebase/util';
 import { stringify } from '@firebase/util';
 import { assert } from '@firebase/util';

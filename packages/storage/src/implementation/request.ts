@@ -19,7 +19,7 @@
  * abstract representations.
  */
 
-import firebase from '@firebase/app';
+import firebase from '@deepqai/firebase-app';
 import * as array from './array';
 import * as backoff from './backoff';
 import * as errorsExports from './error';

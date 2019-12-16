@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import firebase from '@firebase/app';
+import firebase from '@deepqai/firebase-app';
 import { FirebaseApp, FirebaseNamespace } from '@firebase/app-types';
 import { _FirebaseNamespace } from '@firebase/app-types/private';
 import { Database } from './src/api/Database';

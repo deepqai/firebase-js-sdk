@@ -18,7 +18,7 @@ below:
 **ES Modules**
 
 ```javascript
-import firebase from '@firebase/app';
+import firebase from '@deepqai/firebase-app';
 import '@firebase/firestore'
 
 // Do stuff w/ `firebase` and `firebase.firestore`
@@ -27,7 +27,7 @@ import '@firebase/firestore'
 **CommonJS Modules**
 
 ```javascript
-const firebase = require('@firebase/app').default;
+const firebase = require('@deepqai/firebase-app').default;
 require('@firebase/firestore');
 
 // Do stuff with `firebase` and `firebase.firestore`

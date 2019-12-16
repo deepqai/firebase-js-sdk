@@ -18,7 +18,7 @@ import { RepoInfo } from '../core/RepoInfo';
 
 declare const MozWebSocket: any;
 
-import firebase from '@firebase/app';
+import firebase from '@deepqai/firebase-app';
 import { assert } from '@firebase/util';
 import { logWrapper, splitStringBySize } from '../core/util/util';
 import { StatsManager } from '../core/stats/StatsManager';

@@ -16,7 +16,7 @@
 
 import * as grpc from 'grpc';
 
-import firebase from '@firebase/app';
+import firebase from '@deepqai/firebase-app';
 const SDK_VERSION = firebase.SDK_VERSION;
 
 const grpcVersion = require('grpc/package.json').version;

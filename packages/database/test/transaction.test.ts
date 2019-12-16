@@ -28,7 +28,7 @@ import {
   EventAccumulatorFactory
 } from './helpers/EventAccumulator';
 import { hijackHash } from '../src/api/test_access';
-import firebase from '@firebase/app';
+import firebase from '@deepqai/firebase-app';
 import '../index';
 
 describe('Transaction Tests', function() {
