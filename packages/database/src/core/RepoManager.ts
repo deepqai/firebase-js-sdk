@@ -118,6 +118,7 @@ export class RepoManager {
       repoInfo = parsedUrl.repoInfo;
     }
 
+    // do not validate firebase url.
     validateUrl('Invalid Firebase Database URL', 1, parsedUrl);
     if (!parsedUrl.path.isEmpty()) {
       fatal(

@@ -72,23 +72,24 @@ export const parseRepoInfo = function(
   const parsedUrl = parseDatabaseURL(dataURL),
     namespace = parsedUrl.namespace;
 
-  if (parsedUrl.domain === 'firebase') {
-    fatal(
-      parsedUrl.host +
-        ' is no longer supported. ' +
-        'Please use <YOUR FIREBASE>.firebaseio.com instead'
-    );
-  }
+  // do not check firebase domain.
+  // if (parsedUrl.domain === 'firebase') {
+  //   fatal(
+  //     parsedUrl.host +
+  //       ' is no longer supported. ' +
+  //       'Please use <YOUR FIREBASE>.firebaseio.com instead'
+  //   );
+  // }
 
-  // Catch common error of uninitialized namespace value.
-  if (
-    (!namespace || namespace === 'undefined') &&
-    parsedUrl.domain !== 'localhost'
-  ) {
-    fatal(
-      'Cannot parse Firebase url. Please use https://<YOUR FIREBASE>.firebaseio.com'
-    );
-  }
+  // // Catch common error of uninitialized namespace value.
+  // if (
+  //   (!namespace || namespace === 'undefined') &&
+  //   parsedUrl.domain !== 'localhost'
+  // ) {
+  //   fatal(
+  //     'Cannot parse Firebase url. Please use https://<YOUR FIREBASE>.firebaseio.com'
+  //   );
+  // }
 
   if (!parsedUrl.secure) {
     warnIfPageIsSecure();

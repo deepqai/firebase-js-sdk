@@ -39,6 +39,8 @@ export class QueryParams {
   private startNameSet_ = false;
   private endSet_ = false;
   private endNameSet_ = false;
+  private mongoFilterSet_ = false;
+  private mongoOptionSet_ = false;
 
   private limit_ = 0;
   private viewFrom_ = '';
@@ -46,6 +48,8 @@ export class QueryParams {
   private indexStartName_ = '';
   private indexEndValue_: unknown | null = null;
   private indexEndName_ = '';
+  private mongoFilter_: unknown | null = null;
+  private mongoOption_: unknown | null = null;
 
   private index_ = PRIORITY_INDEX;
 
@@ -64,7 +68,9 @@ export class QueryParams {
     VIEW_FROM: 'vf',
     VIEW_FROM_LEFT: 'l',
     VIEW_FROM_RIGHT: 'r',
-    INDEX: 'i'
+    INDEX: 'i',
+    MONGO_FILTER: 'f',
+    MONGO_OPTION: 'p'
   };
 
   /**
@@ -146,6 +152,13 @@ export class QueryParams {
   }
 
   /**
+   * @return {boolean}
+   */
+  hasMongo(): boolean {
+    return this.mongoFilterSet_;
+  }
+
+  /**
    * Only valid to call if hasEnd() returns true.
    * @return {*}
    */
@@ -209,6 +222,8 @@ export class QueryParams {
     copy.startSet_ = this.startSet_;
     copy.indexStartValue_ = this.indexStartValue_;
     copy.startNameSet_ = this.startNameSet_;
+    copy.mongoFilterSet_ = this.mongoFilterSet_;
+    copy.mongoOptionSet_ = this.mongoOptionSet_;
     copy.indexStartName_ = this.indexStartName_;
     copy.endSet_ = this.endSet_;
     copy.indexEndValue_ = this.indexEndValue_;
@@ -216,7 +231,30 @@ export class QueryParams {
     copy.indexEndName_ = this.indexEndName_;
     copy.index_ = this.index_;
     copy.viewFrom_ = this.viewFrom_;
+    copy.mongoFilter_ = this.mongoFilter_;
+    copy.mongoOption_ = this.mongoOption_;
     return copy;
+  }
+
+  /**
+   *
+   * @param filter
+   * @param option
+   */
+  find(filter: unknown, option?: unknown): QueryParams {
+    const newParams = this.copy_();
+    if (filter === undefined) {
+      filter = null;
+    }
+    if (option === undefined) {
+      option = null;
+    }
+
+    newParams.mongoFilterSet_ = true;
+    newParams.mongoOptionSet_ = true;
+    newParams.mongoFilter_ = filter;
+    newParams.mongoOption_ = option;
+    return newParams;
   }
 
   /**
@@ -312,6 +350,21 @@ export class QueryParams {
   /**
    * @return {!Object}
    */
+  getMongoObject(): {} {
+    const WIRE_PROTOCOL_CONSTANTS = QueryParams.WIRE_PROTOCOL_CONSTANTS_;
+    const obj = {};
+    if (this.mongoFilterSet_) {
+      obj[WIRE_PROTOCOL_CONSTANTS.MONGO_FILTER] = this.mongoFilter_;
+    }
+    if (this.mongoOptionSet_) {
+      obj[WIRE_PROTOCOL_CONSTANTS.MONGO_OPTION] = this.mongoOption_;
+    }
+    return obj;
+  }
+
+  /**
+   * @return {!Object}
+   */
   getQueryObject(): {} {
     const WIRE_PROTOCOL_CONSTANTS = QueryParams.WIRE_PROTOCOL_CONSTANTS_;
     const obj: { [k: string]: unknown } = {};
@@ -350,7 +403,10 @@ export class QueryParams {
    * @return {boolean}
    */
   loadsAllData(): boolean {
-    return !(this.startSet_ || this.endSet_ || this.limitSet_);
+    return (
+      !(this.startSet_ || this.endSet_ || this.limitSet_) &&
+      !this.mongoFilterSet_
+    );
   }
 
   /**

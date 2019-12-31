@@ -575,6 +575,31 @@ export class Query {
   }
 
   /**
+   * Return a mongodb query.
+   * @param filter
+   * @param option
+   */
+  find(filter: object = null, option?: object): Query {
+    const newParams = this.queryParams_.find(filter, option);
+    return new Query(this.repo, this.path, newParams, true);
+  }
+
+  /**
+   * An object representation of the query parameters used by this Query.
+   * @return {!Object}
+   */
+  queryMongo(): {} {
+    return this.queryParams_.getMongoObject();
+  }
+
+  /**
+   * @return {boolean}
+   */
+  hasMongo(): boolean {
+    return this.queryParams_.hasMongo();
+  }
+
+  /**
    * @return {!string} URL for this location.
    */
   toString(): string {
@@ -603,7 +628,7 @@ export class Query {
    * @return {!string}
    */
   queryIdentifier(): string {
-    const obj = this.queryObject();
+    const obj = this.hasMongo() ? this.queryMongo() : this.queryObject();
     const id = ObjectToUniqueKey(obj);
     return id === '{}' ? 'default' : id;
   }

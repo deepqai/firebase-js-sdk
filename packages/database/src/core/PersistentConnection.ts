@@ -230,7 +230,11 @@ export class PersistentConnection extends ServerActions {
 
     // Only bother to send query if it's non-default.
     if (listenSpec.tag) {
-      req['q'] = query.queryObject();
+      if (query.hasMongo()) {
+        req['m'] = query.queryMongo();
+      } else {
+        req['q'] = query.queryObject();
+      }
       req['t'] = listenSpec.tag;
     }
 
@@ -364,7 +368,8 @@ export class PersistentConnection extends ServerActions {
     );
     const listen = this.removeListen_(pathString, queryId);
     if (listen && this.connected_) {
-      this.sendUnlisten_(pathString, queryId, query.queryObject(), tag);
+      let obj = query.hasMongo() ? query.queryMongo() : query.queryObject();
+      this.sendUnlisten_(pathString, queryId, obj, tag);
     }
   }
 
@@ -380,7 +385,12 @@ export class PersistentConnection extends ServerActions {
     const action = 'n';
     // Only bother sending queryId if it's non-default.
     if (tag) {
-      req['q'] = queryObj;
+      // detect mongo filter.
+      if (queryObj['f']) {
+        req['m'] = queryObj;
+      } else {
+        req['q'] = queryObj;
+      }
       req['t'] = tag;
     }
 
