@@ -31,7 +31,7 @@ import * as types from '@firebase/database-types';
 import { setSDKVersion } from './src/core/version';
 import { Component, ComponentType } from '@firebase/component';
 
-import { name, version } from './package.json';
+import { version } from './package.json';
 
 const ServerValue = Database.ServerValue;
 
@@ -73,7 +73,7 @@ export function registerDatabase(instance: FirebaseNamespace) {
       .setMultipleInstances(true)
   );
 
-  instance.registerVersion(name, version);
+  instance.registerVersion('@firebase/database', version);
 
   if (isNodeSdk()) {
     module.exports = namespace;
