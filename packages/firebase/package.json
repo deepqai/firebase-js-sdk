@@ -1,6 +1,6 @@
 {
   "name": "@deepqai/firebase",
-  "version": "7.6.5",
+  "version": "7.6.7",
   "description": "Firebase JavaScript library for web and Node.js",
   "author": "Firebase <firebase-support@google.com> (https://firebase.google.com/)",
   "license": "Apache-2.0",
@@ -41,7 +41,7 @@
     "@firebase/app": "0.5.0",
     "@firebase/app-types": "0.5.0",
     "@firebase/auth": "0.13.3",
-    "@deepqai/firebase-database": "0.5.17",
+    "@deepqai/firebase-database": "0.5.20",
     "@firebase/firestore": "1.9.1",
     "@firebase/functions": "0.4.28",
     "@firebase/installations": "0.3.8",
