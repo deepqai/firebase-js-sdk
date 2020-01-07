@@ -581,7 +581,13 @@ export class Query {
    */
   find(filter: object = null, option?: object): Query {
     const newParams = this.queryParams_.find(filter, option);
-    return new Query(this.repo, this.path, newParams, true);
+    return new Query(
+      this.repo,
+      // append a magic symbol "#"
+      new Path(this.path.toString() + '#'),
+      newParams,
+      true
+    );
   }
 
   /**
