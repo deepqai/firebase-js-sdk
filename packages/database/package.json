@@ -1,6 +1,6 @@
 {
   "name": "@deepqai/firebase-database",
-  "version": "0.5.20",
+  "version": "0.5.21",
   "description": "",
   "author": "Firebase <firebase-support@google.com> (https://firebase.google.com/)",
   "main": "dist/index.node.cjs.js",
