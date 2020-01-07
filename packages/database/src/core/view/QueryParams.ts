@@ -39,8 +39,8 @@ export class QueryParams {
   private startNameSet_ = false;
   private endSet_ = false;
   private endNameSet_ = false;
-  private mongoFilterSet_ = false;
-  private mongoOptionSet_ = false;
+  private findSet_ = false;
+  private aggregateSet_ = false;
 
   private limit_ = 0;
   private viewFrom_ = '';
@@ -48,8 +48,9 @@ export class QueryParams {
   private indexStartName_ = '';
   private indexEndValue_: unknown | null = null;
   private indexEndName_ = '';
-  private mongoFilter_: unknown | null = null;
-  private mongoOption_: unknown | null = null;
+  private findFilter_: unknown | null = null;
+  private findOption_: unknown | null = null;
+  private aggregatePipeline_: unknown | null = null;
 
   private index_ = PRIORITY_INDEX;
 
@@ -69,8 +70,9 @@ export class QueryParams {
     VIEW_FROM_LEFT: 'l',
     VIEW_FROM_RIGHT: 'r',
     INDEX: 'i',
-    MONGO_FILTER: 'f',
-    MONGO_OPTION: 'p'
+    FIND_FILTER: 'f',
+    FIND_OPTION: 'p',
+    AGGREGATE_PIPELINE: 'a'
   };
 
   /**
@@ -155,7 +157,7 @@ export class QueryParams {
    * @return {boolean}
    */
   hasMongo(): boolean {
-    return this.mongoFilterSet_;
+    return this.findSet_ || this.aggregateSet_;
   }
 
   /**
@@ -222,8 +224,7 @@ export class QueryParams {
     copy.startSet_ = this.startSet_;
     copy.indexStartValue_ = this.indexStartValue_;
     copy.startNameSet_ = this.startNameSet_;
-    copy.mongoFilterSet_ = this.mongoFilterSet_;
-    copy.mongoOptionSet_ = this.mongoOptionSet_;
+    copy.findSet_ = this.findSet_;
     copy.indexStartName_ = this.indexStartName_;
     copy.endSet_ = this.endSet_;
     copy.indexEndValue_ = this.indexEndValue_;
@@ -231,8 +232,9 @@ export class QueryParams {
     copy.indexEndName_ = this.indexEndName_;
     copy.index_ = this.index_;
     copy.viewFrom_ = this.viewFrom_;
-    copy.mongoFilter_ = this.mongoFilter_;
-    copy.mongoOption_ = this.mongoOption_;
+    copy.findFilter_ = this.findFilter_;
+    copy.findOption_ = this.findOption_;
+    copy.aggregatePipeline_ = this.aggregatePipeline_;
     return copy;
   }
 
@@ -250,10 +252,24 @@ export class QueryParams {
       option = null;
     }
 
-    newParams.mongoFilterSet_ = true;
-    newParams.mongoOptionSet_ = true;
-    newParams.mongoFilter_ = filter;
-    newParams.mongoOption_ = option;
+    newParams.findSet_ = true;
+    newParams.findFilter_ = filter;
+    newParams.findOption_ = option;
+    return newParams;
+  }
+
+  /**
+   *
+   * @param pipeline
+   */
+  aggregate(pipeline: unknown): QueryParams {
+    const newParams = this.copy_();
+    if (pipeline === undefined) {
+      pipeline = null;
+    }
+
+    newParams.aggregateSet_ = true;
+    newParams.aggregatePipeline_ = pipeline;
     return newParams;
   }
 
@@ -353,11 +369,12 @@ export class QueryParams {
   getMongoObject(): {} {
     const WIRE_PROTOCOL_CONSTANTS = QueryParams.WIRE_PROTOCOL_CONSTANTS_;
     const obj = {};
-    if (this.mongoFilterSet_) {
-      obj[WIRE_PROTOCOL_CONSTANTS.MONGO_FILTER] = this.mongoFilter_;
+    if (this.findSet_) {
+      obj[WIRE_PROTOCOL_CONSTANTS.FIND_FILTER] = this.findFilter_;
+      obj[WIRE_PROTOCOL_CONSTANTS.FIND_OPTION] = this.findOption_;
     }
-    if (this.mongoOptionSet_) {
-      obj[WIRE_PROTOCOL_CONSTANTS.MONGO_OPTION] = this.mongoOption_;
+    if (this.aggregateSet_) {
+      obj[WIRE_PROTOCOL_CONSTANTS.AGGREGATE_PIPELINE] = this.aggregatePipeline_;
     }
     return obj;
   }
@@ -405,7 +422,8 @@ export class QueryParams {
   loadsAllData(): boolean {
     return (
       !(this.startSet_ || this.endSet_ || this.limitSet_) &&
-      !this.mongoFilterSet_
+      !this.findSet_ &&
+      !this.aggregateSet_
     );
   }
 

@@ -590,6 +590,16 @@ export class Query {
     );
   }
 
+  aggregate(pipeline: object = null): Query {
+    const newParams = this.queryParams_.aggregate(pipeline);
+    return new Query(
+      this.repo,
+      // append a magic symbol "#"
+      new Path(this.path.toString() + '#'),
+      newParams,
+      true
+    );
+  }
   /**
    * An object representation of the query parameters used by this Query.
    * @return {!Object}

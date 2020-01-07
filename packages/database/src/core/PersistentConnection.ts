@@ -385,8 +385,8 @@ export class PersistentConnection extends ServerActions {
     const action = 'n';
     // Only bother sending queryId if it's non-default.
     if (tag) {
-      // detect mongo filter.
-      if (queryObj['f']) {
+      // detect find filter or aggregate pipeline.
+      if (queryObj['f'] || queryObj['a']) {
         req['m'] = queryObj;
       } else {
         req['q'] = queryObj;
