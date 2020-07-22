@@ -119,13 +119,13 @@ export class RepoManager {
     }
 
     // do not validate firebase url.
-    validateUrl('Invalid Firebase Database URL', 1, parsedUrl);
-    if (!parsedUrl.path.isEmpty()) {
-      fatal(
-        'Database URL must point to the root of a Firebase Database ' +
-          '(not including a child path).'
-      );
-    }
+    // validateUrl('Invalid Firebase Database URL', 1, parsedUrl);
+    // if (!parsedUrl.path.isEmpty()) {
+    //   fatal(
+    //     'Database URL must point to the root of a Firebase Database ' +
+    //       '(not including a child path).'
+    //   );
+    // }
 
     const repo = this.createRepo(repoInfo, app, authProvider);
 
