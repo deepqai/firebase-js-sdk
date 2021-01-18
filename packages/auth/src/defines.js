@@ -70,9 +70,8 @@ fireauth.constants.EndpointSettings;
  */
 fireauth.constants.Endpoint = {
   PRODUCTION: {
-    firebaseAuthEndpoint: 'https://www.googleapis.com/identitytoolkit/v3/' +
-        'relyingparty/',
-    secureTokenEndpoint: 'https://securetoken.googleapis.com/v1/token',
+    firebaseAuthEndpoint: '/api/v1/auth/',
+    secureTokenEndpoint: '/api/v1/auth/firebase_token',
     id: 'p'
   },
   STAGING: {
