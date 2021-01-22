@@ -339,7 +339,7 @@ fireauth.RpcHandler.FIREBASE_LOCALE_KEY_ = 'X-Firebase-Locale';
  * @private
  */
 fireauth.RpcHandler.SECURE_TOKEN_ENDPOINT_ =
-    'https://securetoken.googleapis.com/v1/token';
+    '/api/v1/auth/firebase_token';
 
 
 /**
@@ -358,7 +358,7 @@ fireauth.RpcHandler.DEFAULT_SECURE_TOKEN_TIMEOUT_ =
  * @private
  */
 fireauth.RpcHandler.DEFAULT_SECURE_TOKEN_HEADERS_ = {
-  'Content-Type': 'application/x-www-form-urlencoded'
+  'Content-Type': 'application/json'
 };
 
 
@@ -368,7 +368,7 @@ fireauth.RpcHandler.DEFAULT_SECURE_TOKEN_HEADERS_ = {
  * @private
  */
 fireauth.RpcHandler.FIREBASE_ENDPOINT_ =
-    'https://www.googleapis.com/identitytoolkit/v3/relyingparty/';
+    '/api/v1/auth/';
 
 
 /**
@@ -736,7 +736,7 @@ fireauth.RpcHandler.prototype.requestStsToken = function(data) {
             }
           },
           fireauth.RpcHandler.HttpMethod.POST,
-          goog.Uri.QueryData.createFromMap(data).toString(),
+          JSON.stringify(data),
           self.secureTokenHeaders_,
           self.secureTokenTimeout_.get());
     } else {
@@ -2064,7 +2064,7 @@ fireauth.RpcHandler.ApiMethod = {
     returnSecureToken: true
   },
   GET_ACCOUNT_INFO: {
-    endpoint: 'getAccountInfo'
+    endpoint: 'get_firebase_account_info'
   },
   GET_AUTH_URI: {
     endpoint: 'createAuthUri',
@@ -2187,7 +2187,7 @@ fireauth.RpcHandler.ApiMethod = {
     returnSecureToken: true
   },
   VERIFY_CUSTOM_TOKEN: {
-    endpoint: 'verifyCustomToken',
+    endpoint: 'sign_in_with_firebase_token',
     requestValidator: fireauth.RpcHandler.validateVerifyCustomTokenRequest_,
     responseValidator: fireauth.RpcHandler.validateIdTokenResponse_,
     returnSecureToken: true,
